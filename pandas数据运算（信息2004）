@@ -1,3 +1,40 @@
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
+import pandas as pd
+d =pd.DataFrame([[56,78,90],[23,45,67],[None,78,34],[67,78,90],[67,78,90]],
+               index=["张三","李四","王五","王二","王六"],
+               columns=["语文","数学","英语"])
+d
+#运算
+d.sum() #默认按列求和  axsi=0
+d.sum(axis=1) #默认按行求和
+d.mean() # 默认案列求平均值 axis=0
+d.mean(axis=1) #axis=1 按行求平均值
+d.count()#count 统计非NAN的个数
+d.head(2)
+d.describe()
+#max 求最大值  min求最小值
+#head(n)取前n行，若不设置n则默认值前5行
+#tail 取最后n行，若不设置则默认最后5行
+-------------------------------------------------------------
+d =pd.DataFrame([[56,78,90],[23,45,67],[None,78,34],[67,78,90],[67,78,90]],
+               index=["张三","李四","王五","王二","王六"],
+               columns=["语文","数学","英语"])
+d
+#.drop(d.index[[0,0]])
+d.drop(["语文"],axis=1) #根据指定行索引删除某一行
+#等价于
+d.drop(columns="语文")
+
+d.drop(["张三"],axis=0) #根据指定列索引删除某一行
+#等价于
+d.drop(index="张三")
+
+d.isnull() #查看是否包含空值，是则返回true,否则返回False
+d.dropna(axis=1) #去掉带空值的列 axis=1
+d.duplicated() #判断是否有重复值，是则返回true,否则返回false
+d.drop_duplicates() #默认删除第二个重复的值
+--------------------------------------------------------------------
 
 #join() 用于横向拼接
 d1 =pd.DataFrame([[56,78,90],[23,45,67],[None,78,34],[67,78,90],[67,78,90]],
@@ -9,7 +46,7 @@ d2 =pd.DataFrame([[56,78,90],[23,45,67],[None,78,34]],
 #若果索引一致，直接横向拼接，如果索引不一致，索引只输出在join前面
 d1.join(d2)
 d2.join(d1)
+--------------------------------------------------------------------
 
 
 
-ndojwohjdohwodo owj
