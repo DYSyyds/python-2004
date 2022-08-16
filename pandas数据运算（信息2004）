@@ -83,6 +83,6 @@ y
 pd.merge(x,y,how="left") #左连接
 pd.merge(x,y,how="right") #右连接
 pd.merge(x,y,how="inner") #内连接 交集
-pd.merge(x,y,how="outer") #外连接 并连接
+pd.merge(x,y,how="outer") #外连接 并集
 
 
