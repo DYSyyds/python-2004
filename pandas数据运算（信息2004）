@@ -47,6 +47,30 @@ d2 =pd.DataFrame([[56,78,90],[23,45,67],[None,78,34]],
 d1.join(d2)
 d2.join(d1)
 --------------------------------------------------------------------
+1.import pandas as pd
+#导入数据集，将将数据集命名为euro12
+euro12 = pd.read_csv("Euro2012_stats.csv")
+euro12
 
+2.#该数据集中一共有多少列(columns)?
+len(euro12.columns)
+
+3.#输出进球数（Goals）这一列
+euro12["Goals"]
+
+4.#有多少球队参与了2012欧洲杯？
+euro12["Team"].count()
+
+5.#将数据集中的列Team, Yellow Cards和Red Cards单独存为一个名叫discipline的数据框
+
+
+6.#行筛选：找到进球数Goals超过6的球队数据
+euro12[euro12['Goals']>6]
+
+7.#列筛选：选取前7列 
+euro12.head(7)
+
+8.#列筛选：选取除了最后3列之外的全部列
+euro12.iloc[:-3]
 
 
