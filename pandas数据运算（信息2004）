@@ -68,7 +68,7 @@ euro12["Team"].count()
 euro12[euro12['Goals']>6]
 
 7.#列筛选：选取前7列 
-euro12.head(7)
+euro12.iloc[:,0:7]
 
 8.#列筛选：选取除了最后3列之外的全部列
 euro12.iloc[:-3]
