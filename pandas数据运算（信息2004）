@@ -96,3 +96,27 @@ d1
 d2
 pd.concat([d1,d2]) #默认纵向合并 ,axis=0
 pd.concat([d1,d2],axis=1)
+-------------------------------------------------------------------------
+
+学习通作业：：
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"  #显示全结果
+import pandas as pd
+# 导入数据集，将将数据集命名为euro12
+euro12 = pd.read_csv("Euro2012_stats.csv")
+euro12
+# 该数据集中一共有多少列(columns)?
+euro12.shape[1]
+# 输出进球数（Goals）这一列
+euro12.Goals
+# 有多少球队参与了2012欧洲杯？
+euro12.shape[0]
+# 将数据集中的列Team, Yellow Cards和Red Cards单独存为一个名叫discipline的数据框
+discipline = euro12[['Team','Yellow Cards','Red Cards']]
+discipline
+# 行筛选：找到进球数Goals超过6的球队数据
+euro12[euro12.Goals > 6]
+# 列筛选：选取前7列
+euro12.iloc[:,0:7]
+# 列筛选：选取除了最后3列之外的全部列
+euro12.iloc[:,:-3]
