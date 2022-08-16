@@ -9,3 +9,7 @@ d2 =pd.DataFrame([[56,78,90],[23,45,67],[None,78,34]],
 #若果索引一致，直接横向拼接，如果索引不一致，索引只输出在join前面
 d1.join(d2)
 d2.join(d1)
+
+
+
+ndojwohjdohwodo owj
