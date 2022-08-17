@@ -23,3 +23,17 @@ df.groupby('Score').count()
 #指定多个列标签进行分组
 df.groupby(['Name','Score']).groups
 ---------------------------------------------------------------------
+#遍历分组数据
+grouped = df.groupby('Score')
+for label,option_course in grouped:
+    print(label)
+    print(option_course)
+-------    -------------------------------------------------------
+    #应用聚合函数
+import numpy as np
+data = {'Name':['John','Helen','Sona','Ella','Tom'],
+       'Score':[82,93,91,87,87],
+       'option_course':['c#','python','java','c','c++']}
+df = pd.DataFrame(data)
+df.groupby("Name")['Score'].agg(np.mean)
+df.groupby("Name")['Score'].agg
