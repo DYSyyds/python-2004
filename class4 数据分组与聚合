@@ -1,1 +1,25 @@
 
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
+import pandas as pd
+data = {'Name':['John','Helen','Sona','Ella','Tom'],
+       'Score':[82,93,91,87,87],
+       'option_course':['c#','python','java','c','c++']}
+df = pd.DataFrame(data)
+df
+
+#生成分组groupby对象
+df.groupby('Score')
+
+#查看分组结果groups
+df.groupby('Score').groups
+
+#根据对应组的数据值，选择一个组
+df.groupby('Score').get_group(87)
+
+#查看每个分组的个数
+df.groupby('Score').count()
+
+#指定多个列标签进行分组
+df.groupby(['Name','Score']).groups
+---------------------------------------------------------------------
