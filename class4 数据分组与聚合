@@ -37,3 +37,30 @@ data = {'Name':['John','Helen','Sona','Ella','Tom'],
 df = pd.DataFrame(data)
 df.groupby("Name")['Score'].agg(np.mean)
 df.groupby("Name")['Score'].agg
+----------------------------------------------------------
+#胡蒙辉
+x = pd.DataFrame({"姓名":["张三","李四","王五","王六","王琦","王八"],
+                 "班级":["一班","二班","三班","一班","二班","三班"],
+                 "分数":[67,78,78,89,78,78],
+                 "绩点":[3,4.5,2,3.5,6,4.5]})
+y = pd.DataFrame({"专业":["统计学","计算机","会计","土木","大数据","信息管理"],
+                 "班级":["一班","三班","四班","一班","三班","四班"]})
+x
+y
+#合并两个对象
+d1 = pd.merge(x,y,how="outer")
+d1
+#删除空值
+d1 = d1.dropna()
+d1
+#按照班级进行分组
+d1_group=d1.groupby("班级")
+#查看分组的情况
+d1_group.groups
+#求各班平均值
+d1_mean=d1_group.mean()
+d1_mean
+#求三班分数的平均值
+d1_group.get_group("三班")["分数"].mean()
+#获取行列索引
+print("行索引=",d1_mean.index,"列索引=",d1_mean.columns)
