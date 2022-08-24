@@ -1,0 +1,125 @@
+#2.1绘制折线图
+
+#2.1.1使用plot()绘制折线图
+
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
+import numpy as np
+import matplotlib.pyplot as plt
+arr = np.array([[1, 2, 3], 
+                         [4, 5, 6], 
+                         [7, 8, 9],
+                         [10, 11, 12]])
+arr[0]
+arr[1:]
+plt.plot(arr[0], arr[1:]) 
+---------------------------------------------------------------
+#2.1.2  案例1：未来15天最高气温和最低气温
+x = np.arange(4,19)
+x
+#最高气温
+y_max = np.array([32,33,34,34,33,31,30,29,30,29,26,23,21,25,31])
+#最低气温
+y_min = np.array([19,19,20,22,22,21,22,16,18,18,17,14,15,16,16])
+#绘制折线图
+plt.plot(x,y_max)
+plt.plot(x,y_min)
+-------------------------------------------------------------------
+#2.2绘制柱形图或堆积柱形图
+
+#2.2.1使用bar（）绘制柱形图或堆积柱形图
+
+x = np.arange(5)
+y1 = np.array([10, 8, 7, 11, 13])
+# 柱形的宽度
+bar_width = 0.3
+# 绘制柱形图
+plt.bar(x, y1, tick_label=['a', 'b', 'c', 'd', 'e'], width=bar_width)
+---------------------------------------------------------------------------
+#绘制两组柱形图
+x = np.arange(5)
+y1 = np.array([10, 8, 7, 11, 13])
+y2 = np.array([9,6,5,10,12])
+# 柱形的宽度
+bar_width = 0.3
+# 绘制柱形图
+plt.bar(x, y1, tick_label=['a', 'b', 'c', 'd', 'e'], width=bar_width)
+plt.bar(x+bar_width,y2,width=bar_width)
+---------------------------------------------------------------------
+#绘制堆积柱形图
+plt.bar(x, y1, tick_label=['a', 'b', 'c', 'd', 'e'], width=bar_width)
+plt.bar(x, y2, bottom=y1,width=bar_width)
+------------------------------------------------------------------------
+# 偏差数据
+error = [2, 1, 2.5, 2, 1.5]
+# 绘制带有误差棒的柱形图
+plt.bar(x, y1, tick_label=['a', 'b', 'c', 'd', 'e'], width=bar_width)
+plt.bar(x, y1, bottom=y1, width=bar_width, yerr=error)
+---------------------------------------------------------------------
+x = np.arange(7)
+y1 = np.array([10770, 16780, 24440, 30921, 37670,48200,57270])
+# 柱形的宽度
+bar_width = 0.5
+# 绘制柱形图
+plt.bar(x, y1, tick_label=['FY2013', 'FY2014', 'FY2015', 'FY2016', 'FY2017','FY2018','FY2019'], width=bar_width)
+#遍历无指向注释文本
+for a, b in zip(x, y1):
+ plt.text(a,b,'%.f'%b,ha='center')
+ ---------------------------------------------------------------------------
+ x = np.arange(7)
+y = np.array([1,2,3,4,5,6,7])
+bar_width=0.3
+plt.bar(x,y,tick_label=['fy1','fy2','fy4','fy5','fy6','fy8','fy7'],width=bar_width)
+------------------------------------------------------------------------------------------------
+x = np.arange(5)
+y = np.array([10, 8, 7, 11, 13])
+# 条形的高度
+bar_height = 0.5
+# 绘制条形图
+plt.barh(x,y, tick_label=['a', 'b', 'c', 'd', 'e'], height=bar_height) 
+-------------------------------------------------------------------------------
+y = np.arange(5)
+x1 = np.array([10, 8, 7, 11, 13])
+x2 = np.array([9, 6, 5, 10, 12])
+bar_height = 0.3
+plt.barh(y, x1, tick_label=['a', 'b', 'c', 'd', 'e'], height=bar_height)
+plt.barh(y+bar_height, x2,height=bar_height)
+---------------------------------------------------------------------
+#显示中文
+plt.rcParams['font.sans-serif']=['SimHei'] 
+plt.rcParams['axes.unicode_minus']=False
+x = np.arange(1,10)
+y = np.array([0.959, 0.951, 0.935, 0.924, 0.893,0.892,0.865,0.863,0.860])
+labels=["家政", "机票", "家具", "手机", "计算机","汽车","通信","护肤","书籍"]
+plt.barh(x,y,tick_label=labels,height=0.6)
+-----------------------------------------------------------------------------------
+# 准备50个随机测试数据
+scores = np.random.randint(0,100,50)
+# 绘制直方图
+plt.hist(scores, bins=8, histtype='stepfilled’)
+
+--------------------------------------------------------------------
+# 10000个随机数
+random_state = np.random.RandomState(19680801)
+radom_x = random_state.randn(10000)
+# 绘制包含25个矩形条的直方图
+plt.hist(radom_x, bins=25)
+-------------------------------------------------------------------
+data = np.array([20, 50, 10, 15, 30, 55])
+pie_labels = np.array(['A', 'B', 'C', 'D', 'E', 'F'])
+# 绘制圆环图
+dev=(0.1,0.1,0.1,0.1,0.1,0.1)
+plt.pie(data, radius=1.5, wedgeprops={'width':0.7}, 
+           labels=pie_labels,autopct='%3.1f%%',     
+           pctdistance=0.75,explode=dev,shadow=True) 
+ -----------------------------------------------------------------------
+ import numpy as np
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif']=['SimHei'] 
+plt.rcParams['axes.unicode_minus']=False
+kinds = ['购物','人情往来','餐饮美食','通信物流','生活日用','交通出行','休闲娱乐','其他']
+x = [800/3000,100/3000,1000/3000,200/3000,300/3000,200/3000,200/3000,200/3000]
+dev=[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1]
+plt.pie(x,labels=kinds,autopct='%3.1f%%',explode=dev,shadow=True,startangle=90)
+-------------------------------------------------------------------------------------------------
+
