@@ -1,0 +1,110 @@
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
+import numpy as np
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif']=['SimHei'] 
+plt.rcParams['axes.unicode_minus']=False
+
+
+x = np.linspace(-np.pi,np.pi,256,endpoint=True)
+x
+y1 = np.sin(x)
+y2 = np.cos(x)
+plt.plot(x,y1,x,y2)
+
+plt.xlabel("x轴")
+plt.ylabel("y轴")
+--------------------------------------------------
+#
+x = np.arange(1,16)
+y = np.array([48.57,46.18,42.05,21.83,17.03,16.70,14.01,13.84,12.85,11.38,10.25,9.46,9.27,8.88,8.64])
+labels=["哪吒","流浪地球", "复联", "疯狂外星人", "飞驰人生","烈火英雄","蜘蛛侠","速度与激情","扫毒","大黄蜂","队长","悲伤故事","哥斯拉","战斗天使","补习班"]
+lines=plt.barh(x,y,tick_label=labels,height=0.5)
+plt.xlabel("总票房（亿元）")
+plt.ylabel("电影名称")
+#设置标题
+plt.title("2019电影排行",loc="left",pad=30)
+#添加图例
+plt.legend(lines,labels,ncol=2)
+#显示水平网格线
+plt.grid(b=True, axis='y', linewidth=0.3)
+#添加垂直参考线与水平参考线
+plt.axvline(x=16,linestyle="--")
+-----------------------------------------------------------------
+#第二种方法
+labels=["哪吒", "流浪地球", "复联", "疯狂外星人", "飞驰人生","烈火英雄","蜘蛛侠","速度与激情","扫毒","大黄蜂","队长","悲伤故事","哥斯拉","战斗天使","补习班"]
+bar_width = np.array([48.57,46.18,42.05,21.83,17.03,16.70,14.01,13.84,12.85,11.38,10.25,9.46,9.27,8.88,8.64])
+y_data = range(len(labels))
+
+#新建一个空白面板
+fig = plt.figure()
+#创建子图
+ax = fig.add_subplot(111)
+#绘制条形图
+ax.barh(y_data,bar_width,height=0.6,color="orange")
+#设置x轴和y轴
+plt.xlabel("总票房（亿元）")
+plt.ylabel("电影名称")
+#设置y轴的刻度线位置和刻度标签
+# ax.set_yticks(y_data)
+# ax.set_yticklabel(labels)
+#设置标题
+ax.set_title("2019电影排行",loc='left',pad=30)
+#添加图例
+plt.legend(kinds,bbox_to_anchor=[1.5,1.1])
+#显示水平网格线
+plt.grid(b=True, axis='y', linewidth=0.3)
+#添加垂直参考线与水平参考线
+plt.axvline(x=16,linestyle="--")
+=----------------------------------------------------------------
+import numpy as np
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif']=['SimHei'] 
+plt.rcParams['axes.unicode_minus']=False
+
+kinds = ['购物','人情往来','餐饮美食','通信物流','生活日用','交通出行','休闲娱乐','其他']
+x = [800/3000,100/3000,1000/3000,200/3000,300/3000,200/3000,200/3000,200/3000]
+dev=[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1]
+plt.pie(x,labels=kinds,autopct='%3.1f%%',explode=dev,shadow=True,startangle=90)
+plt.title("支付宝月账单报告")
+plt.legend(kinds,bbox_to_anchor=[1.5,1.1])
+---------------------------------------------------------------------------
+# 添加指向型注释文本
+x = np.linspace(-np.pi,np.pi,256,endpoint=True)
+x
+y1 = np.sin(x)
+y2 = np.cos(x)
+plt.plot(x,y1,x,y2)
+plt.annotate("最小值",xy=(-1.4,-1.0),xytext=(-1.5,-0.5),arrowprops=dict(arrowstyle="->"))
+#添加无指向注释文本
+plt.text(2.00,0.00,"y=sin(x)",bbox=dict(alpha=0.5))
+
+---------------------------------------------------------------------
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+x = range(9)
+y = [5.12, 5.15, 5.13, 5.10, 5.2, 5.25, 5.19, 5.24, 5.31]
+c = 0.5 * (min(x) + max(x))
+d = min(y) + 0.3 * (max(y)-min(y))
+#水印
+#plt.text(c, d, '股市有风险，入市须谨慎', ha='center', fontsize=30, rotation=-25, c='gray', alpha=0.4)
+plt.plot(x, y, label='股票A收盘价', c='r', ls='-.', marker='D', lw=2)
+# plt.plot([5.09, 5.13, 5.16, 5.12, 5.09, 5.25, 5.16, 5.20, 5.25], label='股票B收盘价', c='g', ls=':', marker='H', lw=4)
+plt.xticks(x, [
+	'2022-03-27', '2022-03-28', '2022-03-29', '2022-03-30',
+	'2022-03-31', '2022-04-01', '2022-04-04', '2022-04-05',
+	'2022-04-06'], rotation=45)
+# plt.title('某股票收盘价时序图')
+# plt.xlabel('日期')
+# plt.ylabel('价格')
+plt.grid(True)
+plt.legend()
+# 标出每天的收盘价
+for a, b in zip(x, y):
+	plt.text(a, b+0.01, '%.1f'%b, ha='center', va='bottom', fontsize=9)
+
+# 添加注释
+plt.annotate('最低价', (x[y.index(min(y))],min(y)), (x[y.index(min(y))] + 0.5, min(y)), xycoords='data',
+			 arrowprops=dict(facecolor='r', shrink=0.1), c='r',fontsize=15)
+plt.show()
