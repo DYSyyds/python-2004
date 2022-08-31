@@ -1,2 +1,14 @@
-简单题
-梁状 刘雨豪 王浩权 胡蒙辉 张伟
+
+1.....
+import pandas as pd
+job_info = pd.read_csv("job_info.csv",encoding="gbk")
+
+job_info.columns=['公司','岗位','工作地点','工资','发布日期']
+job_info
+
+df = job_info.value_counts().head(1)
+df
+
+job_info.groupby('发布日期').get_group('09-04')
+
+job_info.groupby('发布日期').count()
